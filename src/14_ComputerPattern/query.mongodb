@@ -1,0 +1,11 @@
+
+use("platzi_store")
+
+//3. Consulto la coleccion Orders que cree, 
+//Esta va a tener el producto que agregamos con un total de 12
+
+//db.products.find()
+db.orders.findOne({_id: ObjectId('64388325cfeb8892f2d44561')})
+
+//5. Cuando hago el query nuevamente ya va a quedar el 
+//total en 147

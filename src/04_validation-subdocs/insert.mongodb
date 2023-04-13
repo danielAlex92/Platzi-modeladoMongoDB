@@ -1,0 +1,13 @@
+use("platzi_store")
+
+
+// Categoria es un subdocumento y lo estamos validando
+db.products.insertOne({
+    name: 'Camiseta',
+    sizes: ['L', 'M', 12],
+    category: {
+        name: 'name category',
+        image: ''
+    }
+})
+

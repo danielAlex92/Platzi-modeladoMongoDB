@@ -1,0 +1,22 @@
+use("platzi_store")
+
+// Usamos desnormalizacion, es decir que tenemos redundancia de informacion, 
+// esto puede ser muy util en bases nosql para ganar eficiencia en tiempo
+db.orders.insertOne({
+    user_id: ObjectId('64384775e1e4e5cb9af63111'),    
+    date: '2023-03-20',
+    items: [
+        {
+            name: 'Producto 1',
+            price: 12,
+            qty: 1,
+            product_id: ObjectId('6438721472fee216a390d811')
+        },
+        {
+            name: 'Producto 2',
+            price: 50,
+            qty: 2,
+            product_id: ObjectId('6438721472fee216a390d812')
+        },
+    ],
+})

@@ -1,0 +1,21 @@
+
+// Relacion muchos a muchos (Unidireccional)
+//COnsultamos los stores y sus productos
+//Cada producto tambien puede tener varios Stores
+// El resultado nos muestra el store con el id de sus productos
+//y luego el detalle de cada producto
+use("platzi_store")
+
+//db.products.find()
+//db.stores.find()
+
+db.stores.aggregate([
+    {
+        $lookup: {
+          from: 'products',
+          localField: 'products_ids',
+          foreignField: '_id',
+          as: 'products'
+        }
+    }
+])

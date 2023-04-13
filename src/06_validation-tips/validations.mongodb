@@ -1,0 +1,43 @@
+// Usamos este archivo para modificar un Schema
+
+use("platzi_store")
+
+db.getCollectionInfos()
+
+db.runCommand(
+    {
+        collMod: 'users', 
+        validator: {
+            $jsonSchema: {
+                bsonType: 'object',
+                required: ['password', 'role'],
+                additionalProperties: true,
+                properties: {
+                    name: {
+                        bsonType: 'string'
+                    },
+                    last_name: {
+                        bsonType: 'string'
+                    },
+                    email: {
+                        bsonType: 'string',
+                        //description: "'email' must be a string and is required"
+                    },
+                    password: {
+                        bsonType: 'string',
+                        //Longitud de 8 a 10 caracteres, sino error
+                        pattern: "^[a-zA-Z0-9]{8,10}$"
+                    },
+                    age: {
+                        bsonType: 'number',
+                        minimum: 18,
+                        maximum: 99
+                    },
+                    role: {
+                        enum: ['customer', 'seller', 'admin']
+                    }
+                }
+            }
+        }
+    }
+)

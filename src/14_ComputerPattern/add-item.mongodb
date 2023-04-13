@@ -1,0 +1,41 @@
+// orden
+
+use("platzi_store")
+
+//2. Como esta orden está vacia, le agrego un producto en el campo items
+/* db.orders.updateOne(
+    {_id: ObjectId('64388325cfeb8892f2d44561')},
+    {
+        $push: {
+            items:{                
+                name: 'Producto 1',
+                price: 12,
+                qty: 1,
+                product_id: ObjectId('6438721472fee216a390d811') 
+            }
+        },
+        $inc : {
+            total: 12 * 1
+        }
+    }
+) */
+
+//4. Agrego otro producto. Cada vez que haga esto y 
+//agregue un producto se va a ir aumentando el total
+
+db.orders.updateOne(
+    {_id: ObjectId('64388325cfeb8892f2d44561')},
+    {
+        $push: {
+            items:{                
+                name: 'Producto 2',
+                price: 45,
+                qty: 3,
+                product_id: ObjectId('6438721472fee216a390d812') 
+            }
+        },
+        $inc : {
+            total: 45 * 3
+        }
+    }
+)

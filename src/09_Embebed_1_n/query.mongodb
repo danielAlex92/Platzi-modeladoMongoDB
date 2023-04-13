@@ -1,0 +1,10 @@
+
+use("platzi_store")
+
+// hacemos esta busqueda usando subdocumentos
+//db.users.find()
+
+//db.orders.find()
+
+//Hacemos query para los que tengan cantidad 3
+db.orders.find({'items.qty': 3})

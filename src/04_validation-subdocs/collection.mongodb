@@ -1,0 +1,40 @@
+use("platzi_store")
+
+
+// Con uniqueItems, evito que se repitan
+// Con minItems: 1, hago que tenga una cantidad minima de items
+
+db.createCollection('products', {
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['name'],
+            properties: {
+                name: {
+                    bsonType: 'string'
+                },
+                sizes: {
+                    bsonType: 'array',
+                    uniqueItems: true,
+                    minItems: 1,
+                    items: {
+                        bsonType: 'string'
+                    }
+                },
+                category: {
+                    bsonType: 'object',
+                    required: ['name'],
+                    properties: {
+                        name: {
+                            bsonType: 'string'
+                        },
+                        image: {
+                            bsonType: 'string'
+                        },
+                    }
+                }
+                
+            }
+        }
+    }
+})

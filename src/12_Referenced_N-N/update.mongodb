@@ -1,0 +1,20 @@
+use("platzi_store")
+// 6438721472fee216a390d811
+
+//Primero, vamos a agregar a los productos, un campo donde 
+//indique las stores a las que pertenece para que las dos
+//colecciones queden relacionadas de forma bidireccional
+
+
+db.products.updateOne(
+    {
+        _id: ObjectId('6438721472fee216a390d811')
+    },
+    {
+        $set: {
+            stores_ids: [
+                ObjectId('64387394a89851bc24b05e67')
+            ]
+        }
+    }
+)

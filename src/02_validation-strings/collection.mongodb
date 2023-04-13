@@ -1,0 +1,30 @@
+use("platzi_store")
+
+
+// Con el metodo createCollection hacemos validaciones 
+// en nuestras colecciones creando esquemas, en este caso en users
+// También podemos tener campos requeridos:
+// Cada vez que cambiamos nuestro schema debemos borrar la coleccion anterior.
+db.createCollection('users', {
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['email', 'password'],
+            properties: {
+                name: {
+                    bsonType: 'string'
+                },
+                last_name: {
+                    bsonType: 'string'
+                },
+                email: {
+                    bsonType: 'string',
+                    description: "'email' must be a string and is required"
+                },
+                password: {
+                    bsonType: 'string'
+                }
+            }
+        }
+    }
+})

@@ -1,0 +1,9 @@
+use("platzi_store")
+
+
+// Insertamos un registro
+db.users.insertOne({
+    last_name: 'Molina',
+    email: "daniel@gmail.com"
+})
+

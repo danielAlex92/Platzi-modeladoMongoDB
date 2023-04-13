@@ -1,0 +1,46 @@
+
+//Aquí vemos como hacer consultas de 1-N  
+
+// id Molina:    64384775e1e4e5cb9af63111
+// id Gutierrez: 64386c5c767b3dca5afd95d0
+use("platzi_store")
+
+// Consulto las ordenes de compra del usuario Molina
+db.orders.find({user_id: ObjectId('64384775e1e4e5cb9af63111')})
+// Consulto al usuario Molina
+db.users.findOne({_id: ObjectId('64384775e1e4e5cb9af63111')})
+
+// En el caso anterior tuve que hacer dos consultas para esta 
+//relación uno a muchos, pero usando aggregate() puedo hacerlo 
+// en una sola consulta, me arroja las ordenes de compra
+// y el usuario asociado a ellos.
+
+db.orders.aggregate([
+    {
+        $lookup: {
+          from: 'users',
+          localField: 'user_id',
+          foreignField: '_id',
+          as: 'user'
+        }
+    }
+])
+
+// id de una orden cualquiera: 643849bda900ab687c9b477e
+//De la siguiente forma, filtro por una orden de compra deseada:
+
+db.orders.aggregate([
+    {
+        $match: {
+            _id: ObjectId('643849bda900ab687c9b477e')
+        }
+    },    
+    {
+        $lookup: {
+          from: 'users',
+          localField: 'user_id',
+          foreignField: '_id',
+          as: 'user'
+        }
+    }
+])

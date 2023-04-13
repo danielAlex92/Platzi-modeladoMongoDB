@@ -1,0 +1,25 @@
+// vamos a trabajar con una relacion 1-1 referenciada
+
+use("platzi_store")
+
+// A pesar de que los dos documentos están relacionados
+// debo hacer dos consultas
+db.stores.findOne({storeId: 'ST001'})
+db.stores_details.findOne({storeId: 'ST001'})
+
+// Para evitar esto, puedo usar el aggregation Framework
+// Aqui le expresamos que relacionamos stores con stores_details
+// Además los relacionamos por el campo storeId y le damos un alias
+// De esta forma en una sola consulta me arroja los datos de las dos 
+// tablas ya que estas están relacionadas por medio de ese campo
+
+db.stores.aggregate([
+    {
+        $lookup: {
+          from: 'stores_details',
+          localField: 'storeId',
+          foreignField: 'storeId',
+          as: 'detail'
+        }
+    }
+])

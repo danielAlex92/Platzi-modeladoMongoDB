@@ -1,0 +1,18 @@
+use("platzi_store")
+
+db.users.insertOne({
+    last_name: 'Gutierrez',
+    email: "dago@gmail.com",
+    password: '12343466765',
+    role: 'admin',
+    address: {
+        street: 'Cll 40',
+        city: 'Cali',
+        zip: '869767'
+    },
+    shipping_address: {
+        street: 'Cr 100',
+        city: 'Cali',
+        zip: '34454'
+    }
+})

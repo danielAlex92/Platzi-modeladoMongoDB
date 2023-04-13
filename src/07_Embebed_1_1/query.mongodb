@@ -1,0 +1,8 @@
+
+use("platzi_store")
+
+// hacemos esta busqueda usando subdocumentos
+db.users.find({
+    'address.city': 'Bogota'
+}
+)

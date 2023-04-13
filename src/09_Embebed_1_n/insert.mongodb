@@ -1,0 +1,20 @@
+use("platzi_store")
+
+// Insertamos un documento en una nueva coleccion llamada orders
+// usando el user_id de un usuario de la coleccion users
+db.orders.insertOne({
+    user_id: ObjectId('64384775e1e4e5cb9af63111'),    
+    date: '2023-03-20',
+    items: [
+        {
+            name: 'Camiseta',
+            price: 120,
+            qty: 1
+        },
+        {
+            name: 'Pantalon',
+            price: 200,
+            qty: 2
+        },
+    ],
+})
